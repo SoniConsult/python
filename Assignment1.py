@@ -47,3 +47,49 @@ def Area_and_Perimeter():
 
 
 Area_and_Perimeter()
+
+
+def calculate_statistics():
+    try:
+        numbers = list(map(float, input("Enter numbers separated by space: ").split()))
+        
+        mean = statistics.mean(numbers)
+        median = statistics.median(numbers)
+        mode = statistics.mode(numbers) if len(set(numbers)) > 1 else "No mode"
+        stdev = statistics.stdev(numbers) if len(numbers) > 1 else 0
+        
+        print(f"Mean: {mean}, Median: {median}, Mode: {mode}, Standard Deviation: {stdev}")
+        
+    except ValueError:
+        print("Please enter valid numbers.")
+    except statistics.StatisticsError:
+        print("Error in calculating mode or standard deviation.")
+
+# Call the function
+calculate_statistics()
+ 
+
+ # question 3
+
+def calculate_loan_payment():
+    try:
+        principal = float(input("Enter the principal amount: "))
+        rate_of_interest = float(input("Enter the annual interest rate (in percentage): ")) / 100
+        tenure = int(input("Enter the loan tenure in years: "))
+
+        monthly_rate = rate_of_interest / 12
+        months = tenure * 12
+
+        if monthly_rate == 0:
+            monthly_payment = principal / months
+        else:
+            monthly_payment = principal * monthly_rate * ((1 + monthly_rate) ** months) / ((1 + monthly_rate) ** months - 1)
+        
+        print(f"Monthly payment: {monthly_payment:.2f}")
+
+    except ValueError:
+        print("Invalid input. Please enter numeric values.")
+
+calculate_loan_payment()
+
+
